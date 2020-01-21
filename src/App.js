@@ -17,11 +17,34 @@ const App=()=>(
 class ReactHeader extends React.Component{
   constructor(props){
     super(props);
+    this.state={
+      "background": "transparent",
+      "transition": "background 1s ease-in", // Safari
+      "-webkit-transition": "background 1s ease-in"
+    }
+  }
+
+  componentDidMount=()=> {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount=()=> {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll=(event)=> {
+    if (window.scrollY === 0 ) {
+        this.setState({background: "transparent"});
+    }
+    else {
+        this.setState({background: "blue"});
+    }
   }
 
   render(){
+    
     return(
-      <header className="ReactHeader">
+      <header className="ReactHeader" style={this.state}>
         <a><i/></a>
         <a><h2>My Projects</h2></a>
         <a><h2>Contacts</h2></a>
