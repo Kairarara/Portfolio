@@ -1,6 +1,7 @@
 import React from 'react';
 import FA from 'react-fontawesome';
 import './App.css';
+import {Link, animateScroll} from "react-scroll";
 
 
 const App=()=>(
@@ -18,9 +19,7 @@ class ReactHeader extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      "background": "transparent",
-      "transition": "background 1s ease-in", // Safari
-      "-webkit-transition": "background 1s ease-in"
+      background: "transparent"
     }
   }
 
@@ -35,9 +34,8 @@ class ReactHeader extends React.Component{
   handleScroll=(event)=> {
     if (window.scrollY === 0 ) {
         this.setState({background: "transparent"});
-    }
-    else {
-        this.setState({background: "blue"});
+    } else {
+        this.setState({background: "#4c4c4c"});
     }
   }
 
@@ -45,10 +43,13 @@ class ReactHeader extends React.Component{
     
     return(
       <header className="ReactHeader" style={this.state}>
-        <a><i/></a>
-        <a><h2>My Projects</h2></a>
-        <a><h2>Contacts</h2></a>
-        <LanguagePicker/>
+        <a onClick={()=>animateScroll.scrollToTop()}><FA name="home fa-4x"/></a>
+
+        <div className="HeaderRight">
+          <Link activeClass="active" to="Projects" smooth={true} duration= {500}><h2>My Projects</h2></Link>
+          <Link activeClass="active" to="ReactFooter" smooth={true} duration= {500}><h2>Contacts</h2></Link>
+          <LanguagePicker/>
+        </div>
       </header>
     )
   }
@@ -90,15 +91,23 @@ class TitleScreen extends React.Component{
 class Projects extends React.Component{
   constructor(props){
     super(props);
+    this.state={
+      projectList:[{
+        link:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
+        name:"1"
+      },{
+        link:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/NYCS-bull-trans-2.svg/1024px-NYCS-bull-trans-2.svg.png",
+        name:"2"
+      }]
+    }
   }
 
   render(){
+
+    let projects=this.state.projectList.map((project)=><Project key={project.name} name={project.name} link={project.link}/>);
     return(
-      <div className="Projects">
-        <Project/>
-        <Project/>
-        <Project/>
-        <Project/>
+      <div className="Projects" name="Projects">
+        {projects}
       </div>
     )
   }
@@ -112,7 +121,9 @@ class Project extends React.Component{
   render(){
     return(
       <div className="Project">
-        <h2>Project</h2>
+        <a href={this.props.link} target="_blank">
+          <img src={require("./project-img/"+this.props.name+".png")}/>
+        </a>
       </div>
     )
   }
@@ -127,10 +138,10 @@ class ReactFooter extends React.Component{
 
   render(){
     return(
-      <footer className="ReactFooter">
-        <a><div><h2><FA name="envelope-o"/>Mail</h2></div></a>
-        <a><div><h2><FA name="github"/>Git</h2></div></a>
-        <a><div><h2><FA name="mobile"/>Cell</h2></div></a>
+      <footer className="ReactFooter" name="ReactFooter">
+        <a href="mailto:mailexample"><FA name="envelope-o fa-3x"/><h2>mailexample</h2></a>
+        <a href="https://github.com/" target="_blank"><FA name="github fa-3x"/><h2>GitHub Profile</h2></a>
+        <div><FA name="mobile fa-3x"/><h2>3333333333</h2></div>
       </footer>
     )
   }

@@ -1,19 +1,39 @@
 .App {
   display: flex;
   flex-direction: column;
+  color:white;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor:pointer;
+} 
+
 .ReactHeader{
-  background:#0ff;
   position: fixed;
   top:0px;
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content:flex-end;
+  transition: background 1s ease-in; /* Safari */
+  -webkit-transition: background 1s ease-in;
+}
+
+.ReactHeader div{
+  display:flex;
+  flex-direction: row;
+}
+
+.HeaderRight{
+  margin-left: auto;
+  width:500px;
+  justify-content: space-around;
 }
 
 .TitleScreen{
-  background:#ff0;
+  background:#7c7c7c;
   height:100vh;
   width: 100%;
   z-index: -1;
@@ -26,14 +46,30 @@
   background:#080;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-rows: 500px;
 }
 
 .Project{
   background:#0a0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Project img{
+  width: 300px;
 }
 
 .ReactFooter{
   background:#808;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  text-indent: 10px;
+}
+
+.ReactFooter div, a{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
