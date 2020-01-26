@@ -35,7 +35,7 @@ class ReactHeader extends React.Component{
     if (window.scrollY === 0 ) {
         this.setState({background: "transparent"});
     } else {
-        this.setState({background: "#4c4c4c"});
+        this.setState({background: "#2c2c2c"});
     }
   }
 
@@ -80,8 +80,40 @@ class TitleScreen extends React.Component{
   render(){
     return(
       <div className="TitleScreen">
+        <AnimatedBackground/>
         <h1>Pierluigi Caruso</h1>
       </div>
+    )
+  }
+}
+
+class AnimatedBackground extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  
+  newSquare=(width,height,x,y,className="",style={})=>{
+    style["transform-origin"]=""+x+"% "+y+"%";
+    return <rect width={width} height={height} x={x-width/2} y={y-height/2} className={className} style={style}/>
+  }
+
+  render(){
+    return(
+      <svg viewBox="0 0 100 100" className="AnimatedBackground">
+        {this.newSquare(16.5,16.5,5,25,"Rect2")}
+        {this.newSquare(24,24,25,25,"Rect1")}
+        {this.newSquare(18,18,25,25,"Rect1")}
+        {this.newSquare(31,31,100,6,"Rect2",{"animation-delay": "-3s"})}
+        {this.newSquare(44,44,100,60,"Rect1",{"animation-delay": "-5s"})}
+        {this.newSquare(33,33,100,60,"Rect1",{"animation-delay": "-5s"})}
+        {this.newSquare(13,13,-20,80,"Rect2",{"animation-delay": "-7s"})}
+        {this.newSquare(19,19,-20,20,"Rect2",{"animation-delay": "-12s"})}
+        {this.newSquare(14,14,-20,20,"Rect2",{"animation-delay": "-12s"})}
+        {this.newSquare(13,13,120,80,"Rect2",{"animation-delay": "-7s"})}
+        {this.newSquare(28,28,130,20,"Rect2",{"animation-delay": "-12s"})}
+        {this.newSquare(21,21,130,20,"Rect2",{"animation-delay": "-12s"})}
+      </svg>
     )
   }
 }
