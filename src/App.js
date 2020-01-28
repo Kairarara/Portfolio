@@ -6,6 +6,7 @@ import {Link, animateScroll} from "react-scroll";
 
 const App=()=>(
   <div className="App">
+    <AnimatedBackground/>
     <ReactHeader/>
     <TitleScreen/>
     <Projects/>
@@ -80,7 +81,6 @@ class TitleScreen extends React.Component{
   render(){
     return(
       <div className="TitleScreen">
-        <AnimatedBackground/>
         <h1>Pierluigi Caruso</h1>
       </div>
     )
@@ -93,26 +93,54 @@ class AnimatedBackground extends React.Component{
   }
 
   
-  newSquare=(width,height,x,y,className="",style={})=>{
-    style["transform-origin"]=""+x+"% "+y+"%";
-    return <rect width={width} height={height} x={x-width/2} y={y-height/2} className={className} style={style}/>
+  newSquare=()=>{
+    let x=Math.random()*200-50;
+    let y=Math.random()*100;
+    let width=Math.random()*40+10;
+    let height=width;
+    let style={
+      "animation": "rotate,colorChange",
+      "transform-origin": ""+x+"% "+y+"%",
+      "animation-duration": (Math.random()*25+5)+"s",
+      "animation-timing-function": "linear",
+      "animation-direction": (Math.random()*2<1)?"normal":"reverse",
+      "animation-iteration-count": "infinite",
+      "animation-play-state": "running;",
+      "animation-delay": "-"+(Math.random()*20)+"s"
+    }
+
+    if(Math.random()*5<1){
+      return (
+        <g style={style}>
+          <rect width={width} height={height} x={x-width/2} y={y-height/2} />
+          <rect width={width*3/4} height={height*3/4} x={x-width*3/8} y={y-height*3/8}/>
+        </g>
+      )
+    } else {
+      return <rect width={width} height={height} x={x-width/2} y={y-height/2} style={style}/>
+    }
+
+    
   }
 
   render(){
     return(
       <svg viewBox="0 0 100 100" className="AnimatedBackground">
-        {this.newSquare(16.5,16.5,5,25,"Rect2")}
-        {this.newSquare(24,24,25,25,"Rect1")}
-        {this.newSquare(18,18,25,25,"Rect1")}
-        {this.newSquare(31,31,100,6,"Rect2",{"animation-delay": "-3s"})}
-        {this.newSquare(44,44,100,60,"Rect1",{"animation-delay": "-5s"})}
-        {this.newSquare(33,33,100,60,"Rect1",{"animation-delay": "-5s"})}
-        {this.newSquare(13,13,-20,80,"Rect2",{"animation-delay": "-7s"})}
-        {this.newSquare(19,19,-20,20,"Rect2",{"animation-delay": "-12s"})}
-        {this.newSquare(14,14,-20,20,"Rect2",{"animation-delay": "-12s"})}
-        {this.newSquare(13,13,120,80,"Rect2",{"animation-delay": "-7s"})}
-        {this.newSquare(28,28,130,20,"Rect2",{"animation-delay": "-12s"})}
-        {this.newSquare(21,21,130,20,"Rect2",{"animation-delay": "-12s"})}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
+        {this.newSquare()}
       </svg>
     )
   }
