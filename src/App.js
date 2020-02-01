@@ -16,6 +16,63 @@ const App=()=>(
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
+
+class AnimatedBackground extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  
+  newSquare=()=>{
+    let x=Math.random()*200-50;
+    let y=Math.random()*100;
+    let size=Math.random()*25+5;
+    let style={
+      "animation": "rotate,colorChange",
+      "transform-origin": `${x}% ${y}%`,
+      "animation-duration": `${Math.random()*25+10}s`,
+      "animation-timing-function": "linear",
+      "animation-direction": (Math.random()*2<1)?"normal":"reverse",
+      "animation-iteration-count": "infinite",
+      "animation-play-state": "running;",
+      "animation-delay": `-${Math.random()*20}s`
+    }
+
+    style["stroke-width"]=`${Math.log(size)/3}`;
+
+    if(Math.random()*5<1){
+      return (
+        <g style={style}>
+          <rect width={size} height={size} x={x-size/2} y={y-size/2} />
+          <rect width={size*3/4} height={size*3/4} x={x-size*3/8} y={y-size*3/8}/>
+        </g>
+      )
+    } else {
+      return <rect width={size} height={size} x={x-size/2} y={y-size/2} style={style}/>
+    }
+
+    
+  }
+
+  render(){
+
+    let squares=new Array(15);
+    for(let i=0;i<squares.length;i++){
+      squares[i]=this.newSquare();
+    }
+
+    return(
+      <div className="AnimatedBackground">
+        <svg viewBox="0 0 100 100" >
+          {squares}
+        </svg>
+      </div>
+    )
+  }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+
 class ReactHeader extends React.Component{
   constructor(props){
     super(props);
@@ -64,8 +121,8 @@ class LanguagePicker extends React.Component{
   render(){
     return(
       <div>
-        <a><img src={require("./flag-icons/it.png")} alt="Italian Flag"/></a>
-        <a><img src={require("./flag-icons/uk.png")} alt="United Kingdom Flag"/></a>
+        <a><img src={require("./flag-icons/it.png")} alt="Italian Flag" className="Flag"/></a>
+        <a><img src={require("./flag-icons/uk.png")} alt="United Kingdom Flag" className="Flag"/></a>
       </div>
     )
   }
@@ -87,64 +144,6 @@ class TitleScreen extends React.Component{
   }
 }
 
-class AnimatedBackground extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-  
-  newSquare=()=>{
-    let x=Math.random()*200-50;
-    let y=Math.random()*100;
-    let width=Math.random()*40+10;
-    let height=width;
-    let style={
-      "animation": "rotate,colorChange",
-      "transform-origin": ""+x+"% "+y+"%",
-      "animation-duration": (Math.random()*25+5)+"s",
-      "animation-timing-function": "linear",
-      "animation-direction": (Math.random()*2<1)?"normal":"reverse",
-      "animation-iteration-count": "infinite",
-      "animation-play-state": "running;",
-      "animation-delay": "-"+(Math.random()*20)+"s"
-    }
-
-    if(Math.random()*5<1){
-      return (
-        <g style={style}>
-          <rect width={width} height={height} x={x-width/2} y={y-height/2} />
-          <rect width={width*3/4} height={height*3/4} x={x-width*3/8} y={y-height*3/8}/>
-        </g>
-      )
-    } else {
-      return <rect width={width} height={height} x={x-width/2} y={y-height/2} style={style}/>
-    }
-
-    
-  }
-
-  render(){
-    return(
-      <svg viewBox="0 0 100 100" className="AnimatedBackground">
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-        {this.newSquare()}
-      </svg>
-    )
-  }
-}
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -154,20 +153,60 @@ class Projects extends React.Component{
     this.state={
       projectList:[{
         link:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
-        name:"1"
+        name:"Simon Says",
+        tags:["React","FrontEnd"]
       },{
         link:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/NYCS-bull-trans-2.svg/1024px-NYCS-bull-trans-2.svg.png",
-        name:"2"
-      }]
+        name:"2",
+        tags:["2"]
+      }],
+      filter:""
     }
   }
 
-  render(){
+  modifyFilter=(e)=>{
+    this.setState({
+      filter:e.target.value
+    });
+    return;
+  }
 
-    let projects=this.state.projectList.map((project)=><Project key={project.name} name={project.name} link={project.link}/>);
+  render(){
+    let projects;
+    if(this.state.filter!==""){
+      let filterList=this.state.filter.split(' ').map((filter)=>filter.toLowerCase()) ;
+
+      projects=this.state.projectList.filter((project)=>{                                                               // for every project check if it contains tags listed in the fliter
+        let tagList=project.tags.map((tag)=>tag.toLowerCase())                                                          // if it does map to JSX element
+        for(let filter of filterList){
+          
+          if(filter!==""){
+            let flag = false;
+            for(let tag of tagList){
+              if(tag.includes(filter)) {
+                flag=true;
+                break;
+              };
+            }
+            if(!flag) return false;
+          }
+
+        }
+        return true;
+      }).map((project)=><Project key={project.name} project={project}/>);
+
+    } else {
+      projects=this.state.projectList.map((project)=><Project key={project.name} project={project}/>);
+    }
+
+
+
     return(
       <div className="Projects" name="Projects">
-        {projects}
+        <input className="SearchBar" type="text" value={this.state.filter} onChange={this.modifyFilter} />
+        <div className="ProjectsGrid">
+          {projects}
+        </div>
       </div>
     )
   }
@@ -179,11 +218,35 @@ class Project extends React.Component{
   }
 
   render(){
+    let tags=this.props.project.tags.map((tagName)=>{
+      return <Tag key={tagName} tag={tagName}/>
+    })
+
     return(
       <div className="Project">
-        <a href={this.props.link} target="_blank">
-          <img src={require("./project-img/"+this.props.name+".png")}/>
-        </a>
+        <div className="InnerProject">
+          <h3>{this.props.project.name}</h3>
+          <a href={this.props.project.link} target="_blank">
+            <img src={require("./project-img/"+this.props.project.name+".png")}/>
+          </a>
+          <div className="TagList">
+            {tags}
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+class Tag extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return (
+      <div activeClass="active" to="Projects" smooth={true} duration= {500} className={`Tag ${this.props.tag}`}>
+        {this.props.tag}
       </div>
     )
   }
