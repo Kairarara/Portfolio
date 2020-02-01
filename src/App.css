@@ -35,13 +35,8 @@ a {
 
 .HeaderRight{
   margin-left: auto;
-  width:500px;
+  width:400px;
   justify-content: space-around;
-}
-
-.Flag{
-  width: 50px;
-  margin: 5px;
 }
 
 .TitleScreen{

@@ -50,8 +50,6 @@ class AnimatedBackground extends React.Component{
     } else {
       return <rect width={size} height={size} x={x-size/2} y={y-size/2} style={style}/>
     }
-
-    
   }
 
   render(){
@@ -106,7 +104,6 @@ class ReactHeader extends React.Component{
         <div className="HeaderRight">
           <Link activeClass="active" to="Projects" smooth={true} duration= {500}><h2>My Projects</h2></Link>
           <Link activeClass="active" to="ReactFooter" smooth={true} duration= {500}><h2>Contacts</h2></Link>
-          <LanguagePicker/>
         </div>
       </header>
     )
