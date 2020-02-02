@@ -9,6 +9,7 @@ const App=()=>(
     <AnimatedBackground/>
     <ReactHeader/>
     <TitleScreen/>
+    <AboutMe/>
     <Projects/>
     <ReactFooter/>
   </div>
@@ -25,12 +26,12 @@ class AnimatedBackground extends React.Component{
   
   newSquare=()=>{
     let x=Math.random()*200-50;
-    let y=Math.random()*100;
+    let y=Math.random()*700-300;
     let size=Math.random()*25+5;
     let style={
       "animation": "rotate,colorChange",
       "transform-origin": `${x}% ${y}%`,
-      "animation-duration": `${Math.random()*25+10}s`,
+      "animation-duration": `${Math.random()*30+15}s`,
       "animation-timing-function": "linear",
       "animation-direction": (Math.random()*2<1)?"normal":"reverse",
       "animation-iteration-count": "infinite",
@@ -54,7 +55,7 @@ class AnimatedBackground extends React.Component{
 
   render(){
 
-    let squares=new Array(15);
+    let squares=new Array(75);
     for(let i=0;i<squares.length;i++){
       squares[i]=this.newSquare();
     }
@@ -98,29 +99,14 @@ class ReactHeader extends React.Component{
   render(){
     
     return(
-      <header className="ReactHeader" style={this.state}>
+      <header style={this.state}>
         <a onClick={()=>animateScroll.scrollToTop()}><FA name="home fa-4x"/></a>
 
         <div className="HeaderRight">
           <Link activeClass="active" to="Projects" smooth={true} duration= {500}><h2>My Projects</h2></Link>
-          <Link activeClass="active" to="ReactFooter" smooth={true} duration= {500}><h2>Contacts</h2></Link>
+          <Link activeClass="active" to="AboutMe" smooth={true} duration= {500}><h2>About me</h2></Link>
         </div>
       </header>
-    )
-  }
-}
-
-class LanguagePicker extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    return(
-      <div>
-        <a><img src={require("./flag-icons/it.png")} alt="Italian Flag" className="Flag"/></a>
-        <a><img src={require("./flag-icons/uk.png")} alt="United Kingdom Flag" className="Flag"/></a>
-      </div>
     )
   }
 }
@@ -136,9 +122,25 @@ class TitleScreen extends React.Component{
     return(
       <div className="TitleScreen">
         <h1>Pierluigi Caruso</h1>
+        <h2>Front-end web developer</h2>
       </div>
     )
   }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+
+const AboutMe=()=>{
+  return(
+    <div name="AboutMe" className="AboutMe">
+      <h2>Hi, I'm Pierlugi</h2>
+      <p>
+        I've been studying coding as a hobby for 2 years, I startded by learning how to write in C++, and I've since moved my focus to JavaScript, 
+        a language that I believed would allow for a smoother entrance in the coding world.
+        I've started learning JavaScript on <a><b>freeCodeCamp</b></a>, where I completed the full course, and i've been since learning on my own. 
+      </p>
+    </div>
+  )
 }
 
 
@@ -200,7 +202,7 @@ class Projects extends React.Component{
 
     return(
       <div className="Projects" name="Projects">
-        <input className="SearchBar" type="text" value={this.state.filter} onChange={this.modifyFilter} />
+        <input className="SearchBar" type="text" value={this.state.filter} onChange={this.modifyFilter} placeholder="Search tags" />
         <div className="ProjectsGrid">
           {projects}
         </div>
@@ -258,7 +260,7 @@ class ReactFooter extends React.Component{
 
   render(){
     return(
-      <footer className="ReactFooter" name="ReactFooter">
+      <footer>
         <a href="mailto:mailexample"><FA name="envelope-o fa-3x"/><h2>mailexample</h2></a>
         <a href="https://github.com/" target="_blank"><FA name="github fa-3x"/><h2>GitHub Profile</h2></a>
         <div><FA name="mobile fa-3x"/><h2>3333333333</h2></div>
