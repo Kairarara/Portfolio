@@ -3,6 +3,9 @@ import FA from 'react-fontawesome';
 import './App.css';
 import {Link, animateScroll} from "react-scroll";
 
+/*
+  #ToDo fix svg background
+*/
 
 const App=()=>(
   <div className="App">
@@ -12,7 +15,7 @@ const App=()=>(
     <AboutMe/>
     <Projects/>
     <ReactFooter/>
-  </div>
+  </div>  
 );
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -21,12 +24,20 @@ const App=()=>(
 class AnimatedBackground extends React.Component{
   constructor(props){
     super(props);
+    this.state={
+      h:0
+    }
   }
 
+  componentDidMount(){
+
+    const height = this.divElement.clientHeight;
+    this.setState({ h:height });
+  }
   
   newSquare=()=>{
-    let x=Math.random()*200-50;
-    let y=Math.random()*700-300;
+    let x=Math.random()*100;
+    let y=Math.random()*100;
     let size=Math.random()*25+5;
     let style={
       "animation": "rotate,colorChange",
@@ -54,15 +65,14 @@ class AnimatedBackground extends React.Component{
   }
 
   render(){
-
-    let squares=new Array(75);
+    let squares=new Array(Math.floor(this.state.h/300));
     for(let i=0;i<squares.length;i++){
       squares[i]=this.newSquare();
     }
 
     return(
-      <div className="AnimatedBackground">
-        <svg viewBox="0 0 100 100" >
+      <div className="AnimatedBackground" ref={ (divElement) => { this.divElement = divElement } }>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
           {squares}
         </svg>
       </div>
@@ -104,7 +114,7 @@ class ReactHeader extends React.Component{
 
         <div className="HeaderRight">
           <Link activeClass="active" to="Projects" smooth={true} duration= {500}><h2>My Projects</h2></Link>
-          <Link activeClass="active" to="AboutMe" smooth={true} duration= {500}><h2>About me</h2></Link>
+          <Link activeClass="active" to="AboutMe" smooth={true} duration= {500} offset={-100}><h2>About me</h2></Link>
         </div>
       </header>
     )
@@ -151,11 +161,13 @@ class Projects extends React.Component{
     super(props);
     this.state={
       projectList:[{
-        link:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
+        demo:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
+        github:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
         name:"Simon Says",
         tags:["React","FrontEnd"]
       },{
-        link:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/NYCS-bull-trans-2.svg/1024px-NYCS-bull-trans-2.svg.png",
+        demo:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/NYCS-bull-trans-2.svg/1024px-NYCS-bull-trans-2.svg.png",
+        github:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/NYCS-bull-trans-2.svg/1024px-NYCS-bull-trans-2.svg.png",
         name:"2",
         tags:["2"]
       }],
@@ -225,11 +237,18 @@ class Project extends React.Component{
       <div className="Project">
         <div className="InnerProject">
           <h3>{this.props.project.name}</h3>
-          <a href={this.props.project.link} target="_blank">
-            <img src={require("./project-img/"+this.props.project.name+".png")}/>
-          </a>
+          <img src={require("./project-img/"+this.props.project.name+".png")}/>
           <div className="TagList">
             {tags}
+          </div>
+
+          <div className="HoverProject">
+            <a href={this.props.project.github} target="_blank">
+              <h3>GitHub</h3>
+            </a>
+            <a href={this.props.project.demo} target="_blank">
+              <h3>Demo</h3>
+            </a>
           </div>
         </div>
       </div>
