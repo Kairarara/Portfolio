@@ -2,21 +2,33 @@ import React from 'react';
 import FA from 'react-fontawesome';
 import './App.css';
 import {Link, animateScroll} from "react-scroll";
+import projectsData from "./projectsData.json";
 
 /*
   #ToDo fix svg background
 */
 
-const App=()=>(
-  <div className="App">
-    <AnimatedBackground/>
-    <ReactHeader/>
-    <TitleScreen/>
-    <AboutMe/>
-    <Projects/>
-    <ReactFooter/>
-  </div>  
-);
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      lang:navigator.language
+    }
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <AnimatedBackground/>
+        <ReactHeader lang={this.state.lang}/>
+        <TitleScreen/>
+        <AboutMe lang={this.state.lang}/>
+        <Projects/>
+        <ReactFooter lang={this.state.lang}/>
+      </div>  
+    )
+  }
+};
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -35,44 +47,44 @@ class AnimatedBackground extends React.Component{
     this.setState({ h:height });
   }
   
-  newSquare=()=>{
+  newSquare=(key)=>{
     let x=Math.random()*100;
     let y=Math.random()*100;
     let size=Math.random()*25+5;
     let style={
       "animation": "rotate,colorChange",
-      "transform-origin": `${x}% ${y}%`,
-      "animation-duration": `${Math.random()*30+15}s`,
-      "animation-timing-function": "linear",
-      "animation-direction": (Math.random()*2<1)?"normal":"reverse",
-      "animation-iteration-count": "infinite",
-      "animation-play-state": "running;",
-      "animation-delay": `-${Math.random()*20}s`
+      "transformOrigin": `${x}% ${y}%`,
+      "animationDuration": `${Math.random()*30+15}s`,
+      "animationTimingFunction": "linear",
+      "animationDirection": (Math.random()*2<1)?"normal":"reverse",
+      "animationIterationCount": "infinite",
+      "animationPlayState": "running",
+      "animationDelay": `-${Math.random()*20}s`
     }
 
-    style["stroke-width"]=`${Math.log(size)/3}`;
+    style["strokeWidth"]=`${Math.log(size)/3}`;
 
     if(Math.random()*5<1){
       return (
-        <g style={style}>
+        <g style={style} key={key}>
           <rect width={size} height={size} x={x-size/2} y={y-size/2} />
           <rect width={size*3/4} height={size*3/4} x={x-size*3/8} y={y-size*3/8}/>
         </g>
       )
     } else {
-      return <rect width={size} height={size} x={x-size/2} y={y-size/2} style={style}/>
+      return <rect width={size} height={size} x={x-size/2} y={y-size/2} style={style} key={key}/>
     }
   }
 
   render(){
     let squares=new Array(Math.floor(this.state.h/300));
     for(let i=0;i<squares.length;i++){
-      squares[i]=this.newSquare();
+      squares[i]=this.newSquare(i);
     }
 
     return(
       <div className="AnimatedBackground" ref={ (divElement) => { this.divElement = divElement } }>
-        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <svg viewBox="0 0 100 100">
           {squares}
         </svg>
       </div>
@@ -113,8 +125,8 @@ class ReactHeader extends React.Component{
         <a onClick={()=>animateScroll.scrollToTop()}><FA name="home fa-4x"/></a>
 
         <div className="HeaderRight">
-          <Link activeClass="active" to="Projects" smooth={true} duration= {500}><h2>My Projects</h2></Link>
-          <Link activeClass="active" to="AboutMe" smooth={true} duration= {500} offset={-100}><h2>About me</h2></Link>
+          <Link activeclass="active" to="Projects" smooth={true} duration= {500}><h2>{(this.props.lang)?"Progetti":"My Projects"}</h2></Link>
+          <Link activeclass="active" to="AboutMe" smooth={true} duration= {500} offset={-100}><h2>{(this.props.lang)?"Su di me":"About me"}</h2></Link>
         </div>
       </header>
     )
@@ -140,17 +152,40 @@ class TitleScreen extends React.Component{
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-const AboutMe=()=>{
-  return(
-    <div name="AboutMe" className="AboutMe">
-      <h2>Hi, I'm Pierlugi</h2>
-      <p>
-        I've been studying coding as a hobby for 2 years, I startded by learning how to write in C++, and I've since moved my focus to JavaScript, 
-        a language that I believed would allow for a smoother entrance in the coding world.
-        I've started learning JavaScript on <a><b>freeCodeCamp</b></a>, where I completed the full course, and i've been since learning on my own. 
-      </p>
-    </div>
-  )
+const AboutMe=(props)=>{
+  let aboutMe;
+
+  switch(props.lang){
+    case "it-IT":{
+      aboutMe=(
+        <div name="AboutMe" className="AboutMe">
+          <h2>Ciao, mi chiamo Pierlugi.</h2>
+          <p>
+            Studio la programmazione come hobby da 2 anni, ho iniziato imparando C++ e da allora ho spostato la mia attenzione verso JavaScript,
+             un linguaggio che credevo avrebbe permesso un ingresso più agevole nel mondo della programmazione professionale.
+            Ho iniziato a studiare JavaScript su <a href="https://www.freecodecamp.org/" target="_blank"><b>freeCodeCamp</b></a>, dove ho completato il corso, e da allora ho continuato a imparare. 
+          </p>
+        </div>
+      )
+      break;
+    }
+    case "en-UK":
+    case "en-US":
+    default:{
+      aboutMe=(
+        <div name="AboutMe" className="AboutMe">
+          <h2>Hi, I'm Pierlugi.</h2>
+          <p>
+            I've been studying coding as a hobby for 2 years, I startded by learning how to write in C++, and I've since moved my focus to JavaScript, 
+            a language that I believed would allow for a smoother entrance in the coding world.
+            I've started learning JavaScript on <a href="https://www.freecodecamp.org/" target="_blank"><b>freeCodeCamp</b></a>, where I completed the full course, and i've been since learning on my own. 
+          </p>
+        </div>
+      )
+    }
+  }
+
+  return aboutMe
 }
 
 
@@ -160,17 +195,7 @@ class Projects extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      projectList:[{
-        demo:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
-        github:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
-        name:"Simon Says",
-        tags:["React","FrontEnd"]
-      },{
-        demo:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/NYCS-bull-trans-2.svg/1024px-NYCS-bull-trans-2.svg.png",
-        github:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/NYCS-bull-trans-2.svg/1024px-NYCS-bull-trans-2.svg.png",
-        name:"2",
-        tags:["2"]
-      }],
+      projectList:projectsData.list,
       filter:""
     }
   }
@@ -263,7 +288,7 @@ class Tag extends React.Component{
 
   render(){
     return (
-      <div activeClass="active" to="Projects" smooth={true} duration= {500} className={`Tag ${this.props.tag}`}>
+      <div className={`Tag ${this.props.tag}`}>
         {this.props.tag}
       </div>
     )
