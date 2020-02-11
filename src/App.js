@@ -305,9 +305,9 @@ class ReactFooter extends React.Component{
   render(){
     return(
       <footer>
-        <a href="mailto:mailexample"><FA name="envelope-o fa-3x"/><h2>mailexample</h2></a>
+        <a href="mailto:pierluigic97@gmail.com"><FA name="envelope-o fa-3x"/><h2>pierluigic97@gmail.com</h2></a>
         <a href="https://github.com/" target="_blank"><FA name="github fa-3x"/><h2>GitHub Profile</h2></a>
-        <div><FA name="mobile fa-3x"/><h2>3333333333</h2></div>
+        <div><FA name="mobile fa-3x"/><h2>3317847177</h2></div>
       </footer>
     )
   }
