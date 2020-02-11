@@ -135,19 +135,13 @@ class ReactHeader extends React.Component{
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-class TitleScreen extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    return(
-      <div className="TitleScreen">
-        <h1>Pierluigi Caruso</h1>
-        <h2>Front-end web developer</h2>
-      </div>
-    )
-  }
+const TitleScreen=(props)=>{
+  return(
+    <div className="TitleScreen">
+      <h1>Pierluigi Caruso</h1>
+      <h2>Front-end web developer</h2>
+    </div>
+  )
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -163,7 +157,7 @@ const AboutMe=(props)=>{
           <p>
             Studio la programmazione come hobby da 2 anni, ho iniziato imparando C++ e da allora ho spostato la mia attenzione verso JavaScript,
              un linguaggio che credevo avrebbe permesso un ingresso più agevole nel mondo della programmazione professionale.
-            Ho iniziato a studiare JavaScript su <a href="https://www.freecodecamp.org/" target="_blank"><b>freeCodeCamp</b></a>, dove ho completato il corso, e da allora ho continuato a imparare. 
+            Ho iniziato a studiare JavaScript su <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, dove ho completato il corso, e da allora ho continuato a imparare. 
           </p>
         </div>
       )
@@ -178,7 +172,7 @@ const AboutMe=(props)=>{
           <p>
             I've been studying coding as a hobby for 2 years, I startded by learning how to write in C++, and I've since moved my focus to JavaScript, 
             a language that I believed would allow for a smoother entrance in the coding world.
-            I've started learning JavaScript on <a href="https://www.freecodecamp.org/" target="_blank"><b>freeCodeCamp</b></a>, where I completed the full course, and i've been since learning on my own. 
+            I've started learning JavaScript on <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, where I completed the full course, and i've been since learning on my own. 
           </p>
         </div>
       )
@@ -248,69 +242,51 @@ class Projects extends React.Component{
   }
 }
 
-class Project extends React.Component{
-  constructor(props){
-    super(props);
-  }
+const Project=(props)=>{
+  let tags=props.project.tags.map((tagName)=>{
+    return <Tag key={tagName} tag={tagName}/>
+  })
 
-  render(){
-    let tags=this.props.project.tags.map((tagName)=>{
-      return <Tag key={tagName} tag={tagName}/>
-    })
+  return(
+    <div className="Project">
+      <div className="InnerProject">
+        <h3>{props.project.name}</h3>
+        <img src={require("./project-img/"+props.project.name+".png")}/>
+        <div className="TagList">
+          {tags}
+        </div>
 
-    return(
-      <div className="Project">
-        <div className="InnerProject">
-          <h3>{this.props.project.name}</h3>
-          <img src={require("./project-img/"+this.props.project.name+".png")}/>
-          <div className="TagList">
-            {tags}
-          </div>
-
-          <div className="HoverProject">
-            <a href={this.props.project.github} target="_blank">
-              <h3>GitHub</h3>
-            </a>
-            <a href={this.props.project.demo} target="_blank">
-              <h3>Demo</h3>
-            </a>
-          </div>
+        <div className="HoverProject">
+          <a href={props.project.github} target="_blank" rel="noopener noreferrer">
+            <h3>GitHub</h3>
+          </a>
+          <a href={props.project.demo} target="_blank" rel="noopener noreferrer">
+            <h3>Demo</h3>
+          </a>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-class Tag extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    return (
-      <div className={`Tag ${this.props.tag}`}>
-        {this.props.tag}
-      </div>
-    )
-  }
+const Tag=(props)=>{
+  return (
+    <div className={`Tag ${props.tag}`}>
+      {props.tag}
+    </div>
+  )
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-class ReactFooter extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    return(
-      <footer>
-        <a href="mailto:pierluigic97@gmail.com"><FA name="envelope-o fa-3x"/><h2>pierluigic97@gmail.com</h2></a>
-        <a href="https://github.com/" target="_blank"><FA name="github fa-3x"/><h2>GitHub Profile</h2></a>
-        <div><FA name="mobile fa-3x"/><h2>3317847177</h2></div>
-      </footer>
-    )
-  }
+const ReactFooter=(props)=>{
+  return(
+    <footer>
+      <a href="mailto:pierluigic97@gmail.com"><FA name="envelope-o fa-3x"/><h2>pierluigic97@gmail.com</h2></a>
+      <a href="https://github.com/Kairarara/" target="_blank" rel="noopener noreferrer"><FA name="github fa-3x"/><h2>GitHub Profile</h2></a>
+      <div><FA name="mobile fa-3x"/><h2>3317847177</h2></div>
+    </footer>
+  )
 }
 
 
