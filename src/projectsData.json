@@ -22,7 +22,13 @@
       "demo":"https://kairarara.github.io/TicTacToe/",
       "github":"https://github.com/Kairarara/TicTacToe",
       "name":"TicTacToe",
-      "tags":["React", "FrontEnd"]
+      "tags":["jQuery", "FrontEnd"]
+    },
+    {
+      "demo":"https://kairarara.github.io/WeatherApp/",
+      "github":"https://github.com/Kairarara/WeatherApp",
+      "name":"Weather App",
+      "tags":["jQuery", "FrontEnd"]
     }
   ]
 }
