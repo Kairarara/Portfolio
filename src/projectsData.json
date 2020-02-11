@@ -1,8 +1,8 @@
 {
   "list":[
     {
-      "demo":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
-      "github":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png",
+      "demo":"https://kairarara.github.io/SimonSays/",
+      "github":"https://github.com/Kairarara/SimonSays",
       "name":"Simon Says",
       "tags":["React","FrontEnd"]
     },
