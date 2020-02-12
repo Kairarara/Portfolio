@@ -33,23 +33,11 @@ class App extends React.Component{
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
 
-class AnimatedBackground extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      h:0
-    }
-  }
-
-  componentDidMount(){
-
-    const height = this.divElement.clientHeight;
-    this.setState({ h:height });
-  }
+const AnimatedBackground=(props)=>{
   
-  newSquare=(key)=>{
+  let newSquare=(key)=>{
     let x=Math.random()*100;
-    let y=Math.random()*100;
+    let y=Math.random()*2000-1000;
     let size=Math.random()*25+5;
     let style={
       "animation": "rotate,colorChange",
@@ -76,20 +64,18 @@ class AnimatedBackground extends React.Component{
     }
   }
 
-  render(){
-    let squares=new Array(Math.floor(this.state.h/300));
-    for(let i=0;i<squares.length;i++){
-      squares[i]=this.newSquare(i);
-    }
-
-    return(
-      <div className="AnimatedBackground" ref={ (divElement) => { this.divElement = divElement } }>
-        <svg viewBox="0 0 100 100">
-          {squares}
-        </svg>
-      </div>
-    )
+  let squares=new Array(70);
+  for(let i=0;i<squares.length;i++){
+    squares[i]=newSquare(i);
   }
+
+  return(
+    <div className="AnimatedBackground">
+      <svg viewBox="0 0 100 100">
+        {squares}
+      </svg>
+    </div>
+  )
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
