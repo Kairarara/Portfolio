@@ -257,7 +257,7 @@ const Project=(props)=>{
 
 const Tag=(props)=>{
   return (
-    <div className={`Tag ${props.tag}`}>
+    <div className={`Tag`}>
       {props.tag}
     </div>
   )
