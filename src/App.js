@@ -32,22 +32,18 @@ class App extends React.Component{
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-
 const AnimatedBackground=(props)=>{
   
   let newSquare=(key)=>{
     let x=Math.random()*100;
     let y=Math.random()*2000-1000;
     let size=Math.random()*25+5;
+    let animation=`colorChange ${Math.random()*30+15}s linear ${(Math.random()*2<1)?"normal":"reverse"} infinite running -${Math.random()*20}s,
+    rotate ${Math.random()*30+15}s linear infinite running -${Math.random()*20}s`;
     let style={
-      "animation": "rotate,colorChange",
       "transformOrigin": `${x}% ${y}%`,
-      "animationDuration": `${Math.random()*30+15}s`,
-      "animationTimingFunction": "linear",
-      "animationDirection": (Math.random()*2<1)?"normal":"reverse",
-      "animationIterationCount": "infinite",
-      "animationPlayState": "running",
-      "animationDelay": `-${Math.random()*20}s`
+      "animation": animation,
+      "-webkit-animation": animation,
     }
 
     style["strokeWidth"]=`${Math.log(size)/3}`;
