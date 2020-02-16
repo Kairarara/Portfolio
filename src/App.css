@@ -6,9 +6,6 @@
   overflow: hidden;
 }
 
-.App *{
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -284,6 +281,10 @@ footer div, a{
 }
 
 @media (max-width:500px){
+  
+  header .fa{
+    font-size: 12vw;
+  }
   
   .TitleScreen h1{
     font-size: 12vw;

@@ -107,8 +107,8 @@ class ReactHeader extends React.Component{
         <a onClick={()=>animateScroll.scrollToTop()}><FA name="home fa-4x"/></a>
 
         <div className="HeaderRight">
-          <Link activeclass="active" to="Projects" smooth={true} duration= {500}><h2>{(this.props.lang)?"Progetti":"My Projects"}</h2></Link>
-          <Link activeclass="active" to="AboutMe" smooth={true} duration= {500} offset={-100}><h2>{(this.props.lang)?"Su di me":"About me"}</h2></Link>
+          <Link activeclass="active" to="Projects" smooth={true} duration= {500}><h2>{(this.props.lang==="it-IT")?"Progetti":"My Projects"}</h2></Link>
+          <Link activeclass="active" to="AboutMe" smooth={true} duration= {500} offset={-100}><h2>{(this.props.lang==="it-IT")?"Su di me":"About me"}</h2></Link>
         </div>
       </header>
     )
