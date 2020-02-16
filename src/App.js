@@ -137,24 +137,21 @@ const AboutMe=(props)=>{
         <div name="AboutMe" className="AboutMe">
           <h2>Ciao, mi chiamo Pierlugi.</h2>
           <p>
-            Studio la programmazione come hobby da 2 anni, ho iniziato imparando C++ e da allora ho spostato la mia attenzione verso JavaScript,
-             un linguaggio che credevo avrebbe permesso un ingresso più agevole nel mondo della programmazione professionale.
-            Ho iniziato a studiare JavaScript su <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, dove ho completato il corso, e da allora ho continuato a imparare. 
+          Ho iniziato a programmare come hobby due anni fa imparando C++ e d'allora ho spostato la mia attenzione verso JavaScript, un linguaggio che avrebbe permesso un ingresso più agevole nel mondo della programmazione professionale.
+          Ho iniziato a studiare JavaScript su <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, completato il corso ho proseguito i miei studi in modo autonomo.
           </p>
         </div>
       )
       break;
     }
-    case "en-UK":
-    case "en-US":
     default:{
       aboutMe=(
         <div name="AboutMe" className="AboutMe">
           <h2>Hi, I'm Pierlugi.</h2>
           <p>
-            I've been studying coding as a hobby for 2 years, I startded by learning how to write in C++, and I've since moved my focus to JavaScript, 
+            I've been studying coding as a hobby for 2 years, I started by learning how to write in C++, and I've since moved my focus to JavaScript, 
             a language that I believed would allow for a smoother entrance in the coding world.
-            I've started learning JavaScript on <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, where I completed the full course, and i've been since learning on my own. 
+            I've started learning JavaScript on <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, where I completed the full course, and I've been since learning on my own. 
           </p>
         </div>
       )
