@@ -121,7 +121,7 @@ const TitleScreen=(props)=>{
   return(
     <div className="TitleScreen">
       <h1>Pierluigi Caruso</h1>
-      <h2>Front-end web developer</h2>
+      <h2>Web Developer</h2>
     </div>
   )
 }
@@ -137,8 +137,9 @@ const AboutMe=(props)=>{
         <div name="AboutMe" className="AboutMe">
           <h2>Ciao, mi chiamo Pierlugi.</h2>
           <p>
-          Ho iniziato a programmare come hobby due anni fa imparando C++ e d'allora ho spostato la mia attenzione verso JavaScript, un linguaggio che avrebbe permesso un ingresso più agevole nel mondo della programmazione professionale.
-          Ho iniziato a studiare JavaScript su <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, completato il corso ho proseguito i miei studi in modo autonomo.
+          Sono un sviluppatore web junior, ho iniziato a programmare imparando C++ e da allora ho spostato la mia attenzione verso JavaScript, un linguaggio che avrebbe permesso un ingresso più agevole nel mondo della programmazione professionale.
+          Ho iniziato a studiare JavaScript su <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, dove ho imparato di vari frameworks come jQuery, React, MongoDB e Node.
+          Da allora ho continuato a studiare e a migliorare.
           </p>
         </div>
       )
@@ -149,9 +150,10 @@ const AboutMe=(props)=>{
         <div name="AboutMe" className="AboutMe">
           <h2>Hi, I'm Pierlugi.</h2>
           <p>
-            I've been studying coding as a hobby for 2 years, I started by learning how to write in C++, and I've since moved my focus to JavaScript, 
+            I'm a Junior web develpoer, I first started programming by learning C++, and I've since moved my focus to JavaScript, 
             a language that I believed would allow for a smoother entrance in the coding world.
-            I've started learning JavaScript on <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, where I completed the full course, and I've been since learning on my own. 
+            I've started learning JavaScript on <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><b>freeCodeCamp</b></a>, where I learned of varius frameworks like jQuery, React, MongoDB, and Node.
+            From then, I've been continued studying on my own. 
           </p>
         </div>
       )
