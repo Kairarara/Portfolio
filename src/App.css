@@ -87,6 +87,7 @@ header{
   display: flex;
   flex-direction: row;
   justify-content:flex-end;
+  align-items: center;
   transition: background 1s ease-in; /* Safari */
   -webkit-transition: background 1s ease-in;
   text-shadow:
