@@ -239,18 +239,20 @@ footer{
   background:#2c2c2c;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   text-indent: 10px;
   height: 100px;
 }
 
-footer div, a{
+footer div, footer a{
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  width:300px;
 }
 
-@media (max-width:800px){
+@media (max-width:1000px){
   
   .HeaderRight{
     width:230px;
@@ -275,7 +277,7 @@ footer div, a{
     z-index:1;
   }
 
-  footer div,a{
+  footer div, footer a{
     width:auto;
   }
 }

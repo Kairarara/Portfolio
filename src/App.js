@@ -263,7 +263,7 @@ const ReactFooter=(props)=>{
     <footer>
       <a href="mailto:pierluigic97@gmail.com"><FA name="envelope-o fa-3x"/><h2>pierluigic97@gmail.com</h2></a>
       <a href="https://github.com/Kairarara/" target="_blank" rel="noopener noreferrer"><FA name="github fa-3x"/><h2>GitHub Profile</h2></a>
-      <div><FA name="mobile fa-3x"/><h2>3317847177</h2></div>
+      <div><FA name="mobile fa-3x"/><h2>+39 3317847177</h2></div>
     </footer>
   )
 }
