@@ -12,6 +12,12 @@ a {
   cursor:pointer;
 } 
 
+button{
+  color: inherit;
+  background-color: transparent;
+  border:none;
+}
+
 .AnimatedBackground{
   position: absolute;
   top:0;
@@ -165,24 +171,23 @@ header div{
   width:100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  grid-auto-rows: 420px;
+  grid-auto-rows: auto;
 }
 
 .Project{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  height:100%;
 }
 
 .InnerProject{
   position: relative;
   width: 400px;
-  height: 360px;
   background: #505050;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin:50px 0px;
 }
 
 .InnerProject h3{
@@ -256,7 +261,7 @@ footer div, footer a{
 @media (max-width:1000px){
   
   .HeaderRight{
-    width:230px;
+    width:330px;
   }
   
   .AboutMe{
@@ -288,9 +293,13 @@ footer div, footer a{
   header .fa{
     font-size: 12vw;
   }
+
+  .HeaderRight{
+    font-size: 3vw;
+  }
   
   .TitleScreen h1{
-    font-size: 12vw;
+    font-size: 10vw;
   }
   
   .TitleScreen h2{
@@ -299,12 +308,12 @@ footer div, footer a{
   
   .ProjectsGrid{
     grid-template-columns: 100vw;
-    grid-auto-rows: 84vw;
+    grid-auto-rows: auto;
   }
 
   .InnerProject{
     width: 80vw;
-    height: 72vw;
+    margin:3vw;
   }
   
   .InnerProject h3{

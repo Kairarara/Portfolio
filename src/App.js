@@ -104,7 +104,7 @@ class ReactHeader extends React.Component{
     
     return(
       <header style={this.state}>
-        <a onClick={()=>animateScroll.scrollToTop()}><FA name="home fa-4x"/></a>
+        <button onClick={()=>animateScroll.scrollToTop()}><FA name="home fa-4x"/></button>
 
         <div className="HeaderRight">
           <Link activeclass="active" to="Projects" smooth={true} duration= {500}><h2>{(this.props.lang==="it-IT")?"Progetti":"My Projects"}</h2></Link>
@@ -228,11 +228,21 @@ const Project=(props)=>{
     return <Tag key={tagName} tag={tagName}/>
   })
 
+  let renderDemo=()=>{
+    if(props.project.hasOwnProperty("demo")){
+      return (
+        <a href={props.project.demo} target="_blank" rel="noopener noreferrer">
+          <h3>Demo</h3>
+        </a>
+      )
+    }
+  }
+
   return(
     <div className="Project">
       <div className="InnerProject">
         <h3>{props.project.name}</h3>
-        <img src={require("./project-img/"+props.project.name+".png")}/>
+        <img src={require("./project-img/"+props.project.name+".png")} alt={props.project.name}/>
         <div className="TagList">
           {tags}
         </div>
@@ -241,9 +251,7 @@ const Project=(props)=>{
           <a href={props.project.github} target="_blank" rel="noopener noreferrer">
             <h3>GitHub</h3>
           </a>
-          <a href={props.project.demo} target="_blank" rel="noopener noreferrer">
-            <h3>Demo</h3>
-          </a>
+          {renderDemo()}
         </div>
       </div>
     </div>

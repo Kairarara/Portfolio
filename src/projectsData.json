@@ -29,6 +29,11 @@
       "github":"https://github.com/Kairarara/WeatherApp",
       "name":"Weather App",
       "tags":["jQuery", "FrontEnd"]
+    },
+    {
+      "github":"https://github.com/Kairarara/chat-rooms-app",
+      "name":"Chat Rooms",
+      "tags":["React", "mySQL", "Node", "Express", "Full Stack"]
     }
   ]
 }
